@@ -1,0 +1,106 @@
+@layout('admin/master')
+@section('content')
+    @section('stylesheets')
+      {{ style('admin/assets/lib/vectormap/jquery-jvectormap-2.0.2.css') }}
+      {{ style('admin/assets/lib/chart-c3/c3.min.css') }}
+      {{ style('admin/assets/lib/chartjs/chartjs-sass-default.css') }}
+    @endsection
+    <section class="main-content">
+        <div class="row">
+            <div class="col">
+                <div class="widget bg-light padding-0">
+                    <div class="row row-table">
+                        <div class="col-xs-4 text-center padding-15 bg-primary">
+                            <em class="icon-bag fa-3x"></em>
+                        </div>
+                        <div class="col-xs-8 padding-15 text-right">
+                            <h2 class="mv-0">4758</h2>
+                            <div class="margin-b-0 text-muted">Sales</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="widget bg-light padding-0">
+                    <div class="row row-table">
+                        <div class="col-xs-4 text-center padding-15 bg-teal">
+                            <em class="icon-basket fa-3x"></em>
+                        </div>
+                        <div class="col-xs-8 padding-15 text-right">
+                            <h2 class="mv-0">785</h2>
+                            <div class="margin-b-0 text-muted">Orders</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="widget bg-light padding-0">
+                    <div class="row row-table">
+                        <div class="col-xs-4 text-center padding-15 bg-success">
+                            <em class="icon-people fa-3x"></em>
+                        </div>
+                        <div class="col-xs-8 padding-15 text-right">
+                            <h2 class="mv-0">1235</h2>
+                            <div class="margin-b-0 text-muted">Users</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="widget bg-light padding-0">
+                    <div class="row row-table">
+                        <div class="col-xs-4 text-center padding-15 bg-indigo">
+                            <em class="icon-pie-chart fa-3x"></em>
+                        </div>
+                        <div class="col-xs-8 padding-15 text-right">
+                            <h2 class="mv-0">2558 $</h2>
+                            <div class="margin-b-0 text-muted">Profit</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header card-default">
+                      Line type chart
+                  </div>
+                  <div class="card-body">
+                      <canvas id="myChart" ></canvas>
+                  </div>
+              </div>
+          </div>
+      </div>
+        @include('admin.footer')
+    </section>
+    @section('scripts')
+      {{ script('https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js') }}
+      <script>
+        var xValues = [100,200,300,400,500,600,700,800,900,1000];
+
+        new Chart("myChart", {
+          type: "line",
+          data: {
+            labels: xValues,
+            datasets: [{
+              data: [860,1140,1060,1060,1070,1110,1330,2210,7830,2478],
+              borderColor: "red",
+              fill: false
+            }, {
+              data: [1600,1700,1700,1900,2000,2700,4000,5000,6000,7000],
+              borderColor: "green",
+              fill: false
+            }, {
+              data: [300,700,2000,5000,6000,4000,2000,1000,200,100],
+              borderColor: "blue",
+              fill: false
+            }]
+          },
+          options: {
+            legend: {display: false}
+          }
+        });
+        </script>
+    @endsection
+@endsection
