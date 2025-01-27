@@ -4,6 +4,7 @@
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
 const ApplicationSetting = use('App/Models/ApplicationSetting');
+const Category = use('App/Models/Category');
 
 class AdminGlobalData {
   /**

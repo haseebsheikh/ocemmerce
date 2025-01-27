@@ -19,19 +19,20 @@
             <div class="card">
                 <div class="card-header card-default">
                   <div class="float-right">
-                    <a href="{{ route('admin.category.create') }}" class="btn btn-primary btn-rounded box-shadow btn-icon"><i class="fa fa-plus"></i> Add Category</a>
+                    <a href="{{ route('admin.product.create') }}" class="btn btn-primary btn-rounded box-shadow btn-icon"><i class="fa fa-plus"></i> Add Product</a>
                   </div>
-                    Category Listing
+                    Product Listing
                 </div>
                 <div class="card-body">
                   <table id="datatable" class="table table-striped dt-responsive nowrap">
                       <thead>
                           <tr>
                               <th>Title</th>
+                              <th>Price</th>
                               <th>Action</th>
                           </tr>
                           <tr>
-                            <td colspan="2">
+                            <td colspan="3">
                                 <div class="row">
                                   <div class="col-6"></div>
                                   <div class="col-6">
@@ -58,7 +59,7 @@
   </section>
   @section('scripts')
     <script>
-      let ajax_listing_url = "{{ route('admin.category.ajaxlisting') }}";
+      let ajax_listing_url = "{{ route('admin.product.ajaxlisting') }}";
     </script>
     {{ script('admin/assets/lib/datatables/jquery.dataTables.min.js') }}
     {{ script('admin/assets/lib/datatables/dataTables.responsive.min.js') }}

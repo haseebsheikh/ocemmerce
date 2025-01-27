@@ -13,7 +13,7 @@ class ProductSchema extends Schema {
       table.string('description', 255).notNullable()
       table.enu('status', ['1', '0']).notNullable().defaultTo('1')
       table.decimal('price', 10, 2).defaultTo(0)
-      table.string('image', 255).notNullable()
+      table.string('image', 255).nullable()
       table.timestamp('deleted_at').nullable()
       table.timestamps()
     })

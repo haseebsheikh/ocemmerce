@@ -45,7 +45,7 @@ class CategoryHook
         if( !_.isEmpty(urlParams.get('keyword')) ){
             let keyword = urlParams.get('keyword');
             query.where( function(){
-                this.where('title','%like',`${keyword}%`)
+                this.where('title','like',`%${keyword}%`)
             })
         }
     }

@@ -14,11 +14,11 @@ const Config     = use('Config')
 const {strSlug, rand, sendMail, baseUrl, momentNow, randomString, getBlurHash} = use("App/Helpers/Index.js");
 const jwt     = use('jsonwebtoken');
 
-class Category extends RestModel
+class Product extends RestModel
 {
     static get table()
     {
-      return "categories";
+      return "products";
     }
 
     static get createdAtColumn () {
@@ -49,8 +49,8 @@ class Category extends RestModel
         return ['*'];
     }
 
-    static async updateCategory(condition ,data) {
-        return await Category.query().where(condition).update(data);
+    static async updateProduct(condition ,data) {
+        return await Product.query().where(condition).update(data);
     }
 }
-module.exports = Category
+module.exports = Product

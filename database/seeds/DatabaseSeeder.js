@@ -63,9 +63,9 @@ class DatabaseSeeder
         await Database.table('users').insert({
             user_group_id: 1,
             user_type: 'admin',
-            name: 'RetroCube',
-            username: 'retrocube',
-            slug: 'retrocube',
+            name: 'E-commerce',
+            username: 'e-commerce',
+            slug: 'e-commerce',
             email: 'admin@yopmail.com',
             mobile_no: '1-8882051816',
             password: await Hash.make('Admin@123$'),
@@ -157,7 +157,7 @@ class DatabaseSeeder
           {
             identifier: 'application_setting',
             meta_key: 'application_name',
-            value: 'RetroCube',
+            value: 'E-commerce',
             is_file: '0',
             created_at: new Date(),
           }
