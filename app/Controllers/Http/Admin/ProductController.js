@@ -64,8 +64,8 @@ class CategoryController extends Controller
             return response.redirect('back')
         }
         delete body_params._csrf;
-        if (!_.isEmpty(request.file('image_url'))) {
-            body_params.image_url = await FileUpload.doUpload(request.file('image_url'), 'product/')
+        if (!_.isEmpty(request.file('image'))) {
+            body_params.image = await FileUpload.doUpload(request.file('image'), 'product/')
         }
 
 

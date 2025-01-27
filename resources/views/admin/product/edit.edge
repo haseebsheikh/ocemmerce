@@ -24,6 +24,12 @@
                             <textarea required class="form-control" name="title" id="" cols="30" rows="10">{{ record.title }}</textarea>
                         </div>
                         <div class="form-group">
+                            <label>Product Image:</label>
+                            <div>
+                                <img src={{storageUrl(record.image)}} alt="Product Image" style="border-radius: 50%; width: 100px; height: 100px;">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label>Status</label>
                             <select required name="status" class="form-control">
                                 <option {{ record.status == true ? 'selected' : '' }} value="1">Active</option>

@@ -3,9 +3,9 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
+const { baseUrl, storageUrl } = use("App/Helpers/Index.js");
+const Env = use('Env');
 const ApplicationSetting = use('App/Models/ApplicationSetting');
-const Category = use('App/Models/Category');
-
 class AdminGlobalData {
   /**
    * @param {object} ctx
@@ -17,7 +17,9 @@ class AdminGlobalData {
     let applicationSetting = await ApplicationSetting.getApplicationSetting({identifier:'application_setting'});
     view.share({
       applicationSetting: applicationSetting,
-      currentYear: new Date().getFullYear()
+      currentYear: new Date().getFullYear(),
+      storageUrl: (url) => storageUrl(url)
+
     })
     await next()
   }
