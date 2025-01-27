@@ -16,15 +16,19 @@ Route.group( () => {
 
   Route.route('application-setting','Admin/ApplicationSetting.index',['GET','POST']).as('admin.application-setting');
 
-  Route.route('user/edit/:slug','Admin/UserController.edit',['GET','POST']).as('admin.user-edit');
-  Route.get('users/ajax-listing','Admin/UserController.ajaxListing').as('admin.user.ajaxlsiting');
-  Route.get('users','Admin/UserController.index').as('admin.user');
+  Route.route('category/edit/:slug','Admin/CategoryController.edit',['GET','POST']).as('admin.category-edit');
+  Route.get('categories/ajax-listing','Admin/CategoryController.ajaxListing').as('admin.category.ajaxlisting');
+  Route.get('categories','Admin/CategoryController.index').as('admin.category');
+  Route.delete('categories','Admin/CategoryController.index').as('admin.category');
+  Route.delete('categories/delete-record','Admin/CategoryController.delete').as('admin.category.delete');
+  Route.route('category/create','Admin/CategoryController.create', ['GET','POST']).as('admin.category.create');
 
-  Route.get('faq/ajax-listing','Admin/FaqController.ajaxListing').as('admin.faq.ajaxlsiting');
+
+  Route.get('faq/ajax-listing','Admin/FaqController.ajaxListing').as('admin.faq.ajaxlisting');
   Route.post('faq/update','Admin/FaqController.update').as('faq.update');
   Route.resource('faq','Admin/FaqController').except(['update']);
 
-  Route.get('content/ajax-listing','Admin/ContentController.ajaxListing').as('admin.content.ajaxlsiting');
+  Route.get('content/ajax-listing','Admin/ContentController.ajaxListing').as('admin.content.ajaxlisting');
   Route.post('content/update','Admin/ContentController.update').as('content.update');
   Route.resource('content','Admin/ContentController');
 

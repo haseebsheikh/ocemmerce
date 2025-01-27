@@ -18,15 +18,36 @@
             @endif
             <div class="card">
                 <div class="card-header card-default">
-                    Content Listing
+                  <div class="float-right">
+                    <a href="{{ route('admin.category.create') }}" class="btn btn-primary btn-rounded box-shadow btn-icon"><i class="fa fa-plus"></i> Add Category</a>
+                  </div>
+                    Category Listing
                 </div>
                 <div class="card-body">
                   <table id="datatable" class="table table-striped dt-responsive nowrap">
                       <thead>
                           <tr>
-                              <th>Content Type</th>
-                              <th>Created At</th>
+                              <th>Title</th>
+                              <th>Price</th>
                               <th>Action</th>
+                          </tr>
+                          <tr>
+                            <td colspan="3">
+                                <div class="row">
+                                  <div class="col-6"></div>
+                                  <div class="col-6">
+                                    <form id="datatable_search" method="GET">
+                                        <input type="hidden" name="user_type" value="user">
+                                        <div class="input-group mb-3">
+                                          <input type="text" placeholder="Search..." name="keyword" class="form-control">
+                                          <div class="input-group-append">
+                                            <button class="btn btn-info"><i class="fa fa-search"></i></button>
+                                          </div>
+                                        </div>
+                                    </form>
+                                  </div>
+                                <div>
+                            </td>
                           </tr>
                       </thead>
                   </table>
@@ -38,7 +59,7 @@
   </section>
   @section('scripts')
     <script>
-      let ajax_listing_url = "{{ route('admin.content.ajaxlisting') }}";
+      let ajax_listing_url = "{{ route('admin.category.ajaxlisting') }}";
     </script>
     {{ script('admin/assets/lib/datatables/jquery.dataTables.min.js') }}
     {{ script('admin/assets/lib/datatables/dataTables.responsive.min.js') }}

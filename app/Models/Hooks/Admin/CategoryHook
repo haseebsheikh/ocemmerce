@@ -1,7 +1,7 @@
 'use strict'
-const _ = use('lodash');
+const _ = use('lodash')
 
-class UserHook
+class CategoryHook
 {
 
     static async indexQueryHook(query, request, slug = {})
@@ -45,14 +45,9 @@ class UserHook
         if( !_.isEmpty(urlParams.get('keyword')) ){
             let keyword = urlParams.get('keyword');
             query.where( function(){
-                this.where('name','like',`${keyword}%`)
-                    .orWhere('email','like',`${keyword}%`)
-                    .orWhere('mobile_no','like',`${keyword}%`)
+                this.where('title','%like',`${keyword}%`)
             })
-        }
-        if( !_.isEmpty(urlParams.get('user_type')) ){
-            query.where('user_type',urlParams.get('user_type'))
         }
     }
 }
-module.exports = UserHook
+module.exports = CategoryHook
