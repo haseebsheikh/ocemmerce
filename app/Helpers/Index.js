@@ -28,7 +28,7 @@ const kebabCase = (string) => {
 }
 
 const baseUrl = (path = '/') => {
-  return Env.get('APP_URL') + path;
+  return Env.get('APP_URL') + '/' + path;
 }
 
 const storageUrl = (path) => {

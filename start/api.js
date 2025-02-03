@@ -6,6 +6,8 @@ Route.group(() => {
   Route.post('user/forgot-password','Api/UserController.forgotPassword').middleware('throttle:5,3600'); //a day
   Route.post('user/login','Api/UserController.login').middleware('throttle:5,86400');
   Route.post('user/social-login','Api/UserController.socialLogin').middleware('throttle:5,86400');
+  Route.resource('category', 'Api/CategoryController')
+  Route.resource('product', 'Api/ProductController')
   Route.resource('user', 'Api/UserController')
     .except(['destroy'])
     .middleware(new Map([
