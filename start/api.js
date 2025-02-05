@@ -9,6 +9,7 @@ Route.group(() => {
   Route.resource('category', 'Api/CategoryController')
   Route.resource('product', 'Api/ProductController')
   Route.resource('user', 'Api/UserController')
+  Route.resource('order', 'Api/OrderController')
     .except(['destroy'])
     .middleware(new Map([
       [['index','show', 'update'], ['apiAuth']]

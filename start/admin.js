@@ -23,6 +23,13 @@ Route.group( () => {
   Route.delete('categories/delete-record','Admin/CategoryController.delete').as('admin.category.delete');
   Route.route('category/create','Admin/CategoryController.create', ['GET','POST']).as('admin.category.create');
 
+  Route.route('order/edit/:slug','Admin/OrderController.edit',['GET','POST']).as('admin.order-edit');
+  Route.get('orders/ajax-listing','Admin/OrderController.ajaxListing').as('admin.order.ajaxlisting');
+  Route.get('orders','Admin/OrderController.index').as('admin.order');
+  Route.delete('orders','Admin/OrderController.index').as('admin.order');
+  Route.delete('orders/delete-record','Admin/OrderController.delete').as('admin.order.delete');
+  Route.route('order/create','Admin/OrderController.create', ['GET','POST']).as('admin.order.create');
+
   Route.route('product/edit/:slug','Admin/ProductController.edit',['GET','POST']).as('admin.product-edit');
   Route.get('products/ajax-listing','Admin/ProductController.ajaxListing').as('admin.product.ajaxlisting');
   Route.get('products','Admin/ProductController.index').as('admin.product');

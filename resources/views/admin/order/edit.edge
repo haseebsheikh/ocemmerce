@@ -1,0 +1,109 @@
+@layout('admin/master')
+@section('content')
+  <section class="main-content">
+    <div class="row">
+        
+        <div class="col-sm-12">
+            @if(hasErrorFor('errors'))
+              @!component('admin.flash-errors', {errors: getErrorFor('errors')})
+            @endif
+            @if(hasErrorFor('error'))
+            @!component('admin.flash-error', error = getErrorFor('error') )
+            @endif
+            @if(flashMessage('success'))
+            @!component('admin.flash-success', success = flashMessage('success') )
+            @endif
+            <form method="post">
+                {{ csrfField() }}
+
+                <div class="row">
+                    <div class="col-md-12">
+                      <div class="card">
+                        <div class="card-header">
+                          Order Details
+                        </div>
+                            <div class="card-body">
+                                <div class="form-group text-center">
+                                <img id="image_url" src="{{ storageUrl(record.image_url) }}" alt="Group Image" class="rounded-circle" style="width: 50px; height: 50px;">
+                                </div>
+                              <div class="form-group">
+                              <label for="contact_no">Contact No</label>
+                              <p id="contact_no">{{ record.contact_no }}</p>
+                              </div>
+                              <div class="form-group">
+                              <label for="description">Email</label>
+                              <p id="description">{{ record.email }}</p>
+                              </div>
+                              <div class="form-group">
+                              <label for="description">Address</label>
+                              <p id="description">{{ record.address }}</p>
+                              </div>
+                              <!--  <div class="form-group">
+                              <label for="privacy_type">Privacy Type</label>
+                                <p id="privacy_type">
+                                @if(record.privacy_type == '1')
+                                  <i class="fa fa-unlock"></i> Public
+                                @else
+                                  <i class="fa fa-lock"></i> Private
+                                @endif
+                                </p>
+                              </div>
+                                <div class="form-group">
+                                  <label for="status">Status</label>
+                                  <select id="status" name="status" class="form-control">
+                                    <option value="1" {{ record.status == '1' ? 'selected' : '' }}>Active</option>
+                                    <option value="0" {{ record.status == '0' ? 'selected' : '' }}>Inactive</option>
+                                  </select>
+                                </div>
+                                <div class="form-group">
+                                  <div class="buttons" style="display: flex; justify-content: end">
+                                      <button class="btn btn-primary">Submit</button>
+                                  </div>
+                                </div>  -->
+                            </div>
+                      </div>
+                  </div>
+                  
+                  <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                          Order Details
+                        </div>
+                    <table id="datatable" class="table table-striped nowrap dataTable no-footer dtr-inline" width="100%">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <strong>ID</strong>
+                                </th>
+                                <th>
+                                    <strong>Title</strong>
+                                </th>
+                                <th>
+                                    <strong>Price</strong>
+                                </th>
+                                <th>
+                                    <strong>Qty</strong>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @each(item in record.orderItems)
+                            <tr>
+                                <td>{{item.id}}</td>
+                                <td>
+                                    {{item.product.title}}
+                                </td>
+                                <td>{{item.price}}</td>
+                                <td>{{item.quantity}}</td>
+                            </tr>
+                            @endeach
+                        </tbody>
+                    </table>
+                  </div>
+              </div>
+            </form>
+        </div>        
+    </div>    
+    @include('admin.footer')
+  </section>
+@endsection
