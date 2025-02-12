@@ -2,6 +2,7 @@ const Route = use('Route');
 
 Route.on('/').render('welcome')
 Route.get('deep-link','HomeController.deepLink');
+Route.get('payment/success','HomeController.paymentSuccess');
 Route.get('file/get/:path','Api/GeneralController.getFile');
 Route.on('encrypt-data').render('encrypt-data')
 Route.get('user/verify-email/:email','UserController.verifyEmail');

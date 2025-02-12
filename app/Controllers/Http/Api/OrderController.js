@@ -1,6 +1,7 @@
 'use strict'
 
 const { validateAll, rule } = use("Validator");
+const Stripe = use("App/Libraries/Payment/Stripe");
 const RestController = require("../RestController");
 
 class OrderController extends RestController
@@ -68,7 +69,14 @@ class OrderController extends RestController
      */
     async beforeStoreLoadModel()
     {
-
+      let session = await Stripe.createCheckoutSession(this.request.all());
+      if( session.code == 400 ){
+        // return this.response.send(session);
+      } else {
+        console.log('<--------after session.data.url-------->',session.data.url);
+        
+        this.request.all().payment_url = session.data.url;
+      }
     }
 
     /**

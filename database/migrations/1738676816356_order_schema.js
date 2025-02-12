@@ -14,6 +14,7 @@ class OrderSchema extends Schema {
       table.integer('user_id').unsigned().references('id').inTable('users').nullable()
       table.enum('payment_method', ['cash', 'card', 'paypal']).defaultTo('cash')
       table.enu('status',['1','0']).notNullable().defaultTo('1')
+      table.string('payment_url').nullable()
       table.enum('order_status', ['pending', 'processing', 'completed', 'cancelled']).defaultTo('pending')
       table.timestamps()
       table.timestamp('deleted_at').nullable()

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hello Adonis</title>
+  {{ style('style') }}
+  {{ style('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css') }}
+</head>
+<body>
+  <section>
+    <div class="logo"></div>
+    <div class="title"></div>
+    <div class="subtitle">
+      <p>AdonisJs simplicity will make you feel confident about your code</p>
+      <p>
+        Don't know where to start? Read the <a href="https://adonisjs.com/docs">documentation</a>.
+      </p>
+    </div>
+  </section>
+  {{ script('https://code.jquery.com/jquery-3.6.0.min.js') }}
+  {{ script('https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js') }}
+  @if(flashMessage('error'))
+    <script>
+        toastr.error("{{ flashMessage('error') }}", 'Error:')
+    </script>
+  @endif
+  @if( flashMessage('success') )
+  <script>
+    toastr.success("{{ flashMessage('success') }}", 'Success:')
+  </script>
+  @endif
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+  <script>
+    window.OneSignal = window.OneSignal || [];
+    OneSignal.push(function() {
+      OneSignal.init({
+        appId: "6e639041-4067-4130-8d7d-19caf2296032",
+      });
+      OneSignal.getUserId(function(userId) {
+        console.log("OneSignal User ID:", userId);
+        // (Output) OneSignal User ID: 270a35cd-4dda-4b3f-b04e-41d7463a2316
+      });
+    });
+  </script>
+</body>
+</html>

@@ -21,5 +21,13 @@ class GatewayController extends Controller
         return await this.gateway.createCustomer(request.input('email'));
 
     }
+
+    async createCheckoutSession({request,response})
+    {
+        this.request  = request;
+        this.response = response;
+
+        return await this.gateway.createCheckoutSession(request.input('amount'),request.input('success_url'),request.input('cancel_url'));
+    }
 }
 module.exports = GatewayController;

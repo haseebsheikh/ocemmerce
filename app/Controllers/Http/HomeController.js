@@ -32,5 +32,9 @@ class HomeController extends Controller
     {
       return view.render('deep-link');
     }
+
+    async paymentSuccess({view}) {
+      return view.render('payment-success');
+    }
 }
 module.exports = HomeController

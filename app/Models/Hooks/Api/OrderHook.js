@@ -15,6 +15,7 @@ class OrderHook {
   static async indexQueryHook(query, request, slug = {}) {}
 
   static async beforeCreateHook(request, params) {
+    params.payment_url = request.all().payment_url;
     params.slug = `${
       Math.floor(Math.random() * 100 + 1) + new Date().getTime()
     }`;
@@ -25,6 +26,7 @@ class OrderHook {
     // toJson
     // req_params.items = JSON.parse(req_params.items);
     forEach(req_params.items, (item) => {
+      delete item.title;
       item.order_id = record.id;
       item.product_id = item.product_id;
       item.slug = `${item.product_id}_${

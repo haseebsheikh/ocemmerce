@@ -50,6 +50,7 @@ class Order
           status:record.status,
           email: record.email,
           contact_no: record.contact_no,
+          payment_url: record.payment_url,
           address: record.address,
           created_at: record.created_at
       }

@@ -108,5 +108,39 @@ class Stripe
           data: charge
         }
     }
+
+    static async createCheckoutSession(data, success_url = `${Env.get('APP_URL')}/payment/success`, cancel_url= `${Env.get('APP_URL')}/payment/cancel`) {
+        let session;
+        try{
+          session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            line_items: data.items.map(item => {
+              return {
+                price_data: {
+                  currency: 'pkr',
+                  product_data: {
+                    name: item.title,
+                  },
+                  unit_amount: item.price * 100,
+                },
+                quantity: item.quantity,
+              };
+            }),
+            mode: 'payment',
+            success_url: success_url,
+            cancel_url: cancel_url,
+          });
+        } catch ( error ){
+          return {
+              code: 400,
+              message: error.message
+          }
+        }
+        return {
+          code: 200,
+          message: 'Checkout session has been created successfully',
+          data: session
+        }
+    }
 }
 module.exports = Stripe
