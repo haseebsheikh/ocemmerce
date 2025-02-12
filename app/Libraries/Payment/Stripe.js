@@ -109,7 +109,7 @@ class Stripe
         }
     }
 
-    static async createCheckoutSession(data, success_url = `${Env.get('APP_URL')}/payment/success`, cancel_url= `${Env.get('APP_URL')}/payment/cancel`) {
+    static async createCheckoutSession(data, success_url = `${Env.get('APP_URL')}/payment/success`, cancel_url= `${Env.get('APP_URL')}/payment/failed`) {
         let session;
         try{
           session = await stripe.checkout.sessions.create({

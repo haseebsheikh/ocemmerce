@@ -36,5 +36,9 @@ class HomeController extends Controller
     async paymentSuccess({view}) {
       return view.render('payment-success');
     }
+
+    async paymentFailed({view}) {
+      return view.render('payment-failed');
+    }
 }
 module.exports = HomeController
