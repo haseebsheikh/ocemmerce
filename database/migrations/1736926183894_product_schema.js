@@ -10,7 +10,7 @@ class ProductSchema extends Schema {
       table.string('slug', 100).notNullable().unique()
       table.integer('category_id').unsigned().references('id').inTable('categories').onDelete('CASCADE').onUpdate('NO ACTION');
       table.string('title', 100).notNullable()
-      table.string('description', 255).notNullable()
+      table.string('description').nullable()
       table.enu('status', ['1', '0']).notNullable().defaultTo('1')
       table.decimal('price', 10, 2).defaultTo(0)
       table.string('image', 255).nullable()

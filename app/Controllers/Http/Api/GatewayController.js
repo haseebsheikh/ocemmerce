@@ -27,7 +27,9 @@ class GatewayController extends Controller
         this.request  = request;
         this.response = response;
 
-        return await this.gateway.createCheckoutSession(request.input('amount'),request.input('success_url'),request.input('cancel_url'));
+        let session = await this.gateway.createCheckoutSession(request.all());
+
+        return this.sendResponse(200, "success", session);
     }
 }
 module.exports = GatewayController;

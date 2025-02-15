@@ -5,7 +5,7 @@ const Helpers = use('Helpers');
 const _       = use('lodash');
 const AWS     = use('aws-sdk');
 const fs      = use('fs');
-const sharp   = use('sharp');
+// const sharp   = use('sharp');
 const Drive   = use('Drive');
 const blurhash = use('blurhash');
 const pixels   = use('image-pixels');
@@ -34,11 +34,11 @@ class FileUpload
           let fileContent = fs.readFileSync(fileObject.tmpPath);
           await Drive.put(destination_upload_path + filename, fileContent,{ACL: 'public-read'})
           if( resize ){
-              await this.resizeImageLocal(
-                destination_upload_path + filename,
-                destination_upload_path,
-                filename
-              );
+            //   await this.resizeImageLocal(
+            //     destination_upload_path + filename,
+            //     destination_upload_path,
+            //     filename
+            //   );
           }
           return destination_upload_path + filename;
         } else {
@@ -70,7 +70,7 @@ class FileUpload
             let fileContent = fs.readFileSync(fileObject.tmpPath);
             let image_url = await Drive.put(destination_upload_path + filename, fileContent,{ACL: 'public-read'})
             if( resize )
-                await this.resizeImageS3(fileContent,destination_upload_path,filename);
+                // await this.resizeImageS3(fileContent,destination_upload_path,filename);
 
             fs.unlinkSync(fileObject.tmpPath)
             return image_url;
@@ -90,30 +90,30 @@ class FileUpload
         }
     }
 
-    static async resizeImageLocal(fileObject,destination_upload_path,filename)
-    {
-        let fileContent = await Drive.get(fileObject);
-        let meta_data = await sharp(fileContent).metadata()
-        //create thumbnail
-        let thumbnail_content = await sharp(fileContent)
-                                      .resize(Math.round(meta_data.width / 2))
-                                      .toBuffer();
-        //save thumbnail
-        await Drive.put(destination_upload_path + 'thumb_' + filename, thumbnail_content,{ACL: 'public-read'})
-        return destination_upload_path + 'thumb_' + filename;
-    }
+    // static async resizeImageLocal(fileObject,destination_upload_path,filename)
+    // {
+    //     let fileContent = await Drive.get(fileObject);
+    //     let meta_data = await sharp(fileContent).metadata()
+    //     //create thumbnail
+    //     let thumbnail_content = await sharp(fileContent)
+    //                                   .resize(Math.round(meta_data.width / 2))
+    //                                   .toBuffer();
+    //     //save thumbnail
+    //     await Drive.put(destination_upload_path + 'thumb_' + filename, thumbnail_content,{ACL: 'public-read'})
+    //     return destination_upload_path + 'thumb_' + filename;
+    // }
 
-    static async resizeImageS3(fileContent,destination_upload_path,filename)
-    {
-        let meta_data = await sharp(fileContent).metadata()
-        let width  = Math.round(meta_data.width / 2);
-        let height = Math.round(meta_data.height / 2);
-        let file   = await sharp(fileContent)
-                                  .resize(width,height)
-                                  .toBuffer();
-        let image_url = await Drive.put(destination_upload_path + 'thumb_' + filename, file,{ACL: 'public-read'})
-        return image_url;
-    }
+    // static async resizeImageS3(fileContent,destination_upload_path,filename)
+    // {
+    //     let meta_data = await sharp(fileContent).metadata()
+    //     let width  = Math.round(meta_data.width / 2);
+    //     let height = Math.round(meta_data.height / 2);
+    //     let file   = await sharp(fileContent)
+    //                               .resize(width,height)
+    //                               .toBuffer();
+    //     let image_url = await Drive.put(destination_upload_path + 'thumb_' + filename, file,{ACL: 'public-read'})
+    //     return image_url;
+    // }
 
     static async blurHash(image_path)
     {
